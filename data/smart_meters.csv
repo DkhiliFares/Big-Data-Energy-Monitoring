@@ -1,0 +1,31 @@
+meter_id,timestamp,meter_type,region,voltage_v,current_a,power_kw,energy_kwh,status
+SM001,2025-06-01 08:00,Residential,Tunis,228.4,6.2,1.41,0.35,OK
+SM002,2025-06-01 08:05,Residential,Tunis,227.9,5.8,1.32,0.33,OK
+SM003,2025-06-01 08:10,Commercial,Ariana,229.5,12.4,2.85,0.71,OK
+SM004,2025-06-01 08:15,Industrial,Ben Arous,231.1,45.6,10.53,2.63,OK
+SM005,2025-06-01 08:20,Residential,Ariana,226.7,4.9,1.11,0.28,OK
+SM006,2025-06-01 08:25,Commercial,Tunis,228.8,14.2,3.25,0.81,OK
+SM007,2025-06-01 08:30,Industrial,Bizerte,232.4,48.1,11.17,2.79,OK
+SM008,2025-06-01 08:35,Residential,Bizerte,225.9,3.8,0.86,0.22,OK
+SM009,2025-06-01 08:40,Residential,Tunis,227.2,6.5,1.48,0.37,OK
+SM010,2025-06-01 08:45,Commercial,Sfax,229.1,15.3,3.50,0.88,OK
+SM011,2025-06-01 09:00,Residential,Sfax,226.4,5.1,1.15,0.29,OK
+SM012,2025-06-01 09:05,Industrial,Tunis,231.8,50.4,11.69,2.92,OK
+SM013,2025-06-01 09:10,Commercial,Ariana,228.6,13.1,3.00,0.75,OK
+SM014,2025-06-01 09:15,Residential,Ben Arous,227.3,4.4,1.00,0.25,OK
+SM015,2025-06-01 09:20,Industrial,Sfax,232.7,47.3,11.01,2.75,OK
+SM016,2025-06-01 09:25,Residential,Tunis,226.9,6.0,1.36,0.34,OK
+SM017,2025-06-01 09:30,Commercial,Bizerte,229.8,14.8,3.40,0.85,OK
+SM018,2025-06-01 09:35,Residential,Ariana,225.6,3.6,0.81,0.20,OK
+SM019,2025-06-01 09:40,Industrial,Ben Arous,231.2,52.1,12.05,3.01,OK
+SM020,2025-06-01 09:45,Commercial,Sfax,228.9,16.4,3.75,0.94,OK
+SM021,2025-06-01 10:00,Residential,Sfax,226.8,5.4,1.22,0.31,OK
+SM022,2025-06-01 10:05,Industrial,Bizerte,233.1,49.6,11.57,2.89,OK
+SM023,2025-06-01 10:10,Commercial,Tunis,229.3,13.9,3.19,0.80,OK
+SM024,2025-06-01 10:15,Residential,Ben Arous,227.0,4.1,0.93,0.23,OK
+SM025,2025-06-01 10:20,Industrial,Sfax,232.0,46.7,10.83,2.71,OK
+SM026,2025-06-01 10:25,Residential,Ariana,226.1,5.7,1.29,0.32,OK
+SM027,2025-06-01 10:30,Commercial,Bizerte,228.7,15.0,3.43,0.86,OK
+SM028,2025-06-01 10:35,Residential,Tunis,227.5,6.3,1.43,0.36,OK
+SM029,2025-06-01 10:40,Industrial,Ben Arous,231.9,51.4,11.93,2.98,OK
+SM030,2025-06-01 10:45,Commercial,Sfax,229.6,16.1,3.70,0.93,OK
