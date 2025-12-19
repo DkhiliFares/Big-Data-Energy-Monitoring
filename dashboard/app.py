@@ -30,5 +30,36 @@ def get_data():
         })
     return jsonify(data)
 
+@app.route('/api/stats')
+def get_stats():
+    # Mock aggregation: Average Power by Region
+    # In production: db.meter_readings.aggregate([{"$group": {"_id": "$region", "avg_power": {"$avg": "$power_kw"}}}])
+    
+    # Using the 24 governorates list for demo
+    governorates = [
+        "Ariana", "Beja", "Ben Arous", "Bizerte", "Gabes", "Gafsa", 
+        "Jendouba", "Kairouan", "Kasserine", "Kebili", "Kef", "Mahdia", 
+        "Manouba", "Medenine", "Monastir", "Nabeul", "Sfax", "Sidi Bouzid", 
+        "Siliana", "Sousse", "Tataouine", "Tozeur", "Tunis", "Zaghouan"
+    ]
+    
+    stats = []
+    for gov in governorates:
+        # Simulate different consumption levels
+        if gov in ["Tunis", "Sfax", "Sousse"]: # Industrial/High density
+            avg_power = random.uniform(8.0, 12.0)
+        else:
+            avg_power = random.uniform(2.0, 6.0)
+            
+        stats.append({
+            'region': gov,
+            'avg_power': round(avg_power, 2)
+        })
+    
+    # Sort by consumption for better visualization
+    stats.sort(key=lambda x: x['avg_power'], reverse=True)
+    return jsonify(stats)
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

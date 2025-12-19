@@ -1,21 +1,46 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Smart Grid Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { font-family: sans-serif; padding: 20px; background-color: #f4f4f9; }
-        .container { display: flex; flex-wrap: wrap; gap: 20px; }
-        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 45%; }
-        h2 { color: #333; }
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 45%;
+        }
+
+        h2 {
+            color: #333;
+        }
     </style>
 </head>
+
 <body>
     <h1>Energy Consumption Dashboard</h1>
     <div class="container">
         <div class="card">
             <h2>Real-time Power (kW)</h2>
             <canvas id="powerChart"></canvas>
+        </div>
+        <div class="card" style="width: 100%;">
+            <h2>Avg Power by Governorate</h2>
+            <canvas id="regionChart"></canvas>
         </div>
         <div class="card">
             <h2>Live Feed</h2>
@@ -38,22 +63,41 @@
             }
         });
 
+        const ctxRegion = document.getElementById('regionChart').getContext('2d');
+        const regionChart = new Chart(ctxRegion, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Avg Power (kW)',
+                    data: [],
+                    backgroundColor: '#36b9cc',
+                    borderColor: '#2c9faf',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
         function fetchData() {
+            // Fetch Real-time
             fetch('/api/data')
                 .then(response => response.json())
                 .then(data => {
                     // Update Chart
                     const labels = data.map(d => d.timestamp);
                     const values = data.map(d => d.power_kw);
-                    
+
                     if (powerChart.data.labels.length > 20) {
                         powerChart.data.labels.shift();
                         powerChart.data.datasets[0].data.shift();
                     }
-                    
-                    // Simple average for chart or single line per region (simplified for demo)
-                    // Showing first record's power for simplicity of line chart
-                    if(data.length > 0) {
+
+                    if (data.length > 0) {
                         powerChart.data.labels.push(data[0].timestamp);
                         powerChart.data.datasets[0].data.push(data[0].power_kw);
                         powerChart.update();
@@ -68,9 +112,19 @@
                         });
                     }
                 });
+
+            // Fetch Stats
+            fetch('/api/stats')
+                .then(response => response.json())
+                .then(data => {
+                    regionChart.data.labels = data.map(d => d.region);
+                    regionChart.data.datasets[0].data = data.map(d => d.avg_power);
+                    regionChart.update();
+                });
         }
 
         setInterval(fetchData, 2000);
     </script>
 </body>
+
 </html>
